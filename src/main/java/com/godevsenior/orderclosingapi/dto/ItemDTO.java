@@ -1,27 +1,29 @@
-package com.godevsenior.orderclosingapi.entities;
+package com.godevsenior.orderclosingapi.dto;
 
-import javax.persistence.*;
+import com.godevsenior.orderclosingapi.entities.Item;
+
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
-@Table(name = "tb_item")
-public class Item implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemDTO implements Serializable {
     private Long id;
     private String description;
     private Double cost;
-
     private Character type;
 
-    public Item() {}
+    public ItemDTO() {}
 
-    public Item(Long id, String description, Double cost, Character type) {
+    public ItemDTO(Long id, String description, Double cost, Character type) {
         this.id = id;
         this.description = description;
         this.cost = cost;
         this.type = type;
+    }
+
+    public ItemDTO(Item entity) {
+        this.id = entity.getId();
+        this.cost = entity.getCost();
+        this.description = entity.getDescription();
+        this.type = entity.getType();
     }
 
     public Long getId() {
@@ -54,18 +56,5 @@ public class Item implements Serializable {
 
     public void setType(Character type) {
         this.type = type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id.equals(item.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

@@ -1,6 +1,6 @@
 package com.godevsenior.orderclosingapi.controllers;
 
-import com.godevsenior.orderclosingapi.entities.Item;
+import com.godevsenior.orderclosingapi.dto.ItemDTO;
 import com.godevsenior.orderclosingapi.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class ItemController {
     private ItemService service;
 
     @GetMapping
-    public ResponseEntity<List<Item>>findAll() {
-        List<Item> itemsList = service.findAll();
+    public ResponseEntity<List<ItemDTO>>findAll() {
+        List<ItemDTO> itemsList = service.findAll();
 
         return ResponseEntity.ok().body(itemsList);
     }
