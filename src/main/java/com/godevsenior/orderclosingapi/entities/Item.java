@@ -12,7 +12,6 @@ public class Item implements Serializable {
     private Long id;
     private String description;
     private Double cost;
-
     private Character type;
 
     public Item() {}

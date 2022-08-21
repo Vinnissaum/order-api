@@ -3,7 +3,6 @@ package com.godevsenior.orderclosingapi.dto;
 import com.godevsenior.orderclosingapi.entities.Item;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 public class ItemDTO implements Serializable {
     private Long id;
@@ -11,7 +10,7 @@ public class ItemDTO implements Serializable {
     private Double cost;
     private Character type;
 
-    public ItemDTO(Optional<Item> obj) {}
+    public ItemDTO() {}
 
     public ItemDTO(Long id, String description, Double cost, Character type) {
         this.id = id;
