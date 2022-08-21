@@ -1,0 +1,2 @@
+INSERT INTO tb_item (DESCRIPTION, COST, TYPE) VALUES ('Apartment 3 rooms', 500000.00, 'P');
+INSERT INTO tb_item (DESCRIPTION, COST, TYPE) VALUES ('Sanitation', 1000.00, 'S');
