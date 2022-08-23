@@ -1,7 +1,5 @@
 package com.godevsenior.orderclosingapi.entities;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -23,12 +21,11 @@ public class Order implements Serializable {
     private List<OrderItem> orderItems;
     public Order() {}
 
-    public Order(Long id, Integer number, Instant date, Double percentageDiscount, Double totalValue) {
+    public Order(Long id, Integer number, Instant date, Double percentageDiscount) {
         this.id = id;
         this.number = number;
         this.date = date;
         this.percentageDiscount = percentageDiscount;
-        this.totalValue = totalValue;
     }
 
     public Long getId() {
@@ -64,7 +61,9 @@ public class Order implements Serializable {
     }
 
     public Double getTotalValue() {
-        totalValue = orderItems.stream().map(OrderItem::getTotalValue).reduce(0.0, Double::sum);
+        if (orderItems != null) {
+            totalValue = orderItems.stream().map(OrderItem::getTotalValue).reduce(0.0, Double::sum);
+        }
         return totalValue;
     }
 
