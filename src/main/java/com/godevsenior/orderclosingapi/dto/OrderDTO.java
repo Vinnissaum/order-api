@@ -5,16 +5,16 @@ import com.godevsenior.orderclosingapi.entities.Order;
 import java.io.Serializable;
 import java.time.Instant;
 
-public class OrderDTO implements Serializable{
+public class OrderDTO implements Serializable {
 
     private Long id;
     private Integer number;
     private Instant date;
     private Double percentageDiscount;
     private Double totalValue;
-    private List<OrderItemDTO> orderItems;
 
-    public OrderDTO() {}
+    public OrderDTO() {
+    }
 
     public OrderDTO(Long id, Integer number, Instant date, Double percentageDiscount, Double totalValue) {
         this.id = id;
@@ -72,11 +72,4 @@ public class OrderDTO implements Serializable{
         this.totalValue = totalValue;
     }
 
-    public List<OrderItemDTO> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(OrderItemDTO orderItem) {
-        this.orderItems.add(orderItem);
-    }
 }

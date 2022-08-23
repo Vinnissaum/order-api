@@ -1,8 +1,10 @@
 package com.godevsenior.orderclosingapi.services;
 
 import com.godevsenior.orderclosingapi.dto.OrderItemDTO;
+import com.godevsenior.orderclosingapi.entities.Item;
 import com.godevsenior.orderclosingapi.entities.Order;
 import com.godevsenior.orderclosingapi.entities.OrderItem;
+import com.godevsenior.orderclosingapi.repositories.ItemRepository;
 import com.godevsenior.orderclosingapi.repositories.OrderItemRepository;
 import com.godevsenior.orderclosingapi.repositories.OrderRepository;
 import com.godevsenior.orderclosingapi.services.exceptions.DatabaseException;
@@ -24,6 +26,8 @@ public class OrderItemService {
     private OrderItemRepository repository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Transactional(readOnly = true)
     public List<OrderItemDTO> findAll(Long id) {
@@ -43,8 +47,9 @@ public class OrderItemService {
     @Transactional
     public OrderItemDTO insert(Long id, OrderItemDTO dto) {
         OrderItem entity = new OrderItem();
-        Optional<Order> obj = orderRepository.findById(id);
-        Order orderEntity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        Order orderEntity = orderRepository.getReferenceById(id);
+        Item itemEntity = itemRepository.getReferenceById(dto.getItemId());
+        entity.setItem(itemEntity);
         entity.setOrder(orderEntity);
         entity.setOrderId(orderEntity.getId());
         entity.setItemId(dto.getItemId());

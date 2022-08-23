@@ -13,6 +13,8 @@ public class Item implements Serializable {
     private String description;
     private Double cost;
     private Character type;
+    @OneToOne
+    private OrderItem orderItem;
 
     public Item() {}
 

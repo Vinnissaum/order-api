@@ -13,20 +13,22 @@ public class OrderItem implements Serializable {
     private Long id;
     @ManyToOne
     Order order;
+    @OneToOne
+    Item item;
     @Column(name = "order_id", insertable = false, updatable = false)
     private Long orderId;
+    @Column(name = "item_id", insertable = false, updatable = false)
     private Long itemId;
     private Double quantity;
     private Double totalValue;
     public OrderItem() {
     }
 
-    public OrderItem(Long id, Long orderId, Long itemId, Double quantity, Double totalValue) {
+    public OrderItem(Long id, Long orderId, Long itemId, Double quantity) {
         this.id = id;
         this.orderId = orderId;
         this.itemId = itemId;
         this.quantity = quantity;
-        this.totalValue = totalValue;
     }
 
     public Long getId() {
@@ -69,7 +71,16 @@ public class OrderItem implements Serializable {
         this.order = order;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     public Double getTotalValue() {
+        totalValue = item.getCost() * quantity;
         return totalValue;
     }
 

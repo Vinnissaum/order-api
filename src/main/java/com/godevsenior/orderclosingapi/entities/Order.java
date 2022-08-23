@@ -1,5 +1,7 @@
 package com.godevsenior.orderclosingapi.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -17,7 +19,7 @@ public class Order implements Serializable {
     private Instant date;
     private Double percentageDiscount;
     private Double totalValue;
-    @OneToMany
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
     public Order() {}
 
@@ -62,6 +64,7 @@ public class Order implements Serializable {
     }
 
     public Double getTotalValue() {
+        totalValue = orderItems.stream().map(OrderItem::getTotalValue).reduce(0.0, Double::sum);
         return totalValue;
     }
 
