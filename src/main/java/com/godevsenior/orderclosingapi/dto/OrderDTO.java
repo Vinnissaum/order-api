@@ -1,5 +1,5 @@
 package com.godevsenior.orderclosingapi.dto;
-
+import java.util.List;
 import com.godevsenior.orderclosingapi.entities.Order;
 
 import java.io.Serializable;
@@ -12,6 +12,7 @@ public class OrderDTO implements Serializable{
     private Instant date;
     private Double percentageDiscount;
     private Double totalValue;
+    private List<OrderItemDTO> orderItems;
 
     public OrderDTO() {}
 
@@ -69,5 +70,13 @@ public class OrderDTO implements Serializable{
 
     public void setTotalValue(Double totalValue) {
         this.totalValue = totalValue;
+    }
+
+    public List<OrderItemDTO> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(OrderItemDTO orderItem) {
+        this.orderItems.add(orderItem);
     }
 }

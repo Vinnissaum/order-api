@@ -3,6 +3,7 @@ package com.godevsenior.orderclosingapi.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +17,8 @@ public class Order implements Serializable {
     private Instant date;
     private Double percentageDiscount;
     private Double totalValue;
-
+    @OneToMany
+    private List<OrderItem> orderItems;
     public Order() {}
 
     public Order(Long id, Integer number, Instant date, Double percentageDiscount, Double totalValue) {
@@ -65,6 +67,14 @@ public class Order implements Serializable {
 
     public void setTotalValue(Double totalValue) {
         this.totalValue = totalValue;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
     }
 
     @PrePersist
