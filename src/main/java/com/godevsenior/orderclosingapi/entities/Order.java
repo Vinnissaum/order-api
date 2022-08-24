@@ -75,8 +75,8 @@ public class Order implements Serializable {
         return orderItems;
     }
 
-    public void setOrderItems(OrderItem orderItem) {
-        this.orderItems.add(orderItem);
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     @PrePersist

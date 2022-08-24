@@ -1,7 +1,10 @@
 package com.godevsenior.orderclosingapi.services;
 
+import com.godevsenior.orderclosingapi.dto.OrderCloseDTO;
 import com.godevsenior.orderclosingapi.dto.OrderDTO;
 import com.godevsenior.orderclosingapi.entities.Order;
+import com.godevsenior.orderclosingapi.entities.OrderItem;
+import com.godevsenior.orderclosingapi.repositories.OrderItemRepository;
 import com.godevsenior.orderclosingapi.repositories.OrderRepository;
 import com.godevsenior.orderclosingapi.services.exceptions.DatabaseException;
 import com.godevsenior.orderclosingapi.services.exceptions.ResourceNotFoundException;
@@ -20,6 +23,8 @@ public class OrderService {
 
     @Autowired
     private OrderRepository repository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Transactional(readOnly = true)
     public List<OrderDTO> findAll() {
@@ -68,5 +73,16 @@ public class OrderService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Integrity violation");
         }
+    }
+
+    @Transactional
+    public OrderCloseDTO closeOrder(Long id, OrderDTO dto) {
+        Optional<Order> obj = repository.findById(id);
+        Order entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        List<OrderItem> orderItems = orderItemRepository.findAllByOrderId(id);
+        entity.setPercentageDiscount(dto.getPercentageDiscount());
+        entity = repository.save(entity);
+
+        return new OrderCloseDTO(entity, orderItems);
     }
 }

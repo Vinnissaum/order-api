@@ -3,6 +3,7 @@ package com.godevsenior.orderclosingapi.services;
 import com.godevsenior.orderclosingapi.dto.ItemDTO;
 import com.godevsenior.orderclosingapi.entities.Item;
 import com.godevsenior.orderclosingapi.repositories.ItemRepository;
+import com.godevsenior.orderclosingapi.repositories.OrderItemRepository;
 import com.godevsenior.orderclosingapi.services.exceptions.DatabaseException;
 import com.godevsenior.orderclosingapi.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ItemService {
 
     @Autowired
     private ItemRepository repository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Transactional(readOnly = true)
     public List<ItemDTO> findAll() {

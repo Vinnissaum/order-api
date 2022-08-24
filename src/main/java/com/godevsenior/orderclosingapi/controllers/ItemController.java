@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping(value = "/api/items")
 public class ItemController {
 
     @Autowired

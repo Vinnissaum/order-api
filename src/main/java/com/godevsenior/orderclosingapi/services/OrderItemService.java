@@ -49,8 +49,8 @@ public class OrderItemService {
         OrderItem entity = new OrderItem();
         Order orderEntity = orderRepository.getReferenceById(id);
         Item itemEntity = itemRepository.getReferenceById(dto.getItemId());
-        entity.setItem(itemEntity);
         entity.setOrder(orderEntity);
+        entity.setItem(itemEntity);
         entity.setOrderId(orderEntity.getId());
         entity.setItemId(dto.getItemId());
         entity.setQuantity(dto.getQuantity());

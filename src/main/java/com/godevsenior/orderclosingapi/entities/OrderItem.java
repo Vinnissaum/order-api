@@ -13,7 +13,7 @@ public class OrderItem implements Serializable {
     private Long id;
     @ManyToOne
     Order order;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Item item;
     @Column(name = "order_id", insertable = false, updatable = false)
     private Long orderId;

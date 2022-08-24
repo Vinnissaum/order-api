@@ -14,8 +14,7 @@ public class Item implements Serializable {
     private Double cost;
     private Character type;
     @OneToOne
-    private OrderItem orderItem;
-
+    OrderItem orderItem;
     public Item() {}
 
     public Item(Long id, String description, Double cost, Character type) {

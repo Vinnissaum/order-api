@@ -11,11 +11,12 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/orders")
+@RequestMapping(value = "/api/orders")
 public class OrderController {
 
     @Autowired
     private OrderService service;
+
     @GetMapping
     public ResponseEntity<List<OrderDTO>> findAll() {
         List<OrderDTO> ordersList = service.findAll();
@@ -51,5 +52,12 @@ public class OrderController {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping(value = "/{order}/close")
+    public ResponseEntity<OrderDTO> closeOrder(@PathVariable Long order, @RequestBody OrderDTO dto) {
+        dto = service.closeOrder(order, dto);
+
+        return ResponseEntity.ok().body(dto);
     }
 }

@@ -1,5 +1,4 @@
 package com.godevsenior.orderclosingapi.dto;
-import java.util.List;
 import com.godevsenior.orderclosingapi.entities.Order;
 
 import java.io.Serializable;
