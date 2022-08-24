@@ -62,7 +62,10 @@ public class Order implements Serializable {
 
     public Double getTotalValue() {
         if (orderItems != null) {
-            totalValue = orderItems.stream().map(OrderItem::getTotalValue).reduce(0.0, Double::sum);
+            double productWithDiscount = orderItems.stream().filter(orderItem -> orderItem.getItem().getType() == 'P')
+                    .map(x -> x.getItem().getCost()).reduce(0.0, Double::sum) * percentageDiscount;
+            totalValue = productWithDiscount + orderItems.stream().filter(orderItem -> orderItem.getItem().getType() == 'S')
+                    .map(x -> x.getItem().getCost()).reduce(0.0, Double::sum);
         }
         return totalValue;
     }
