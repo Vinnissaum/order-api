@@ -23,7 +23,7 @@ orders, with relationship.
 
 - You will need to have Insomnia API client installed at your computer to use the JSON file and checkout the documentation.
 
-You can download [here](https://insomnia.rest/download)
+- You can download [here](https://insomnia.rest/download)
 
 - The documentation of this project is available on file [insomnia](./insomnia/order-api.json)
 
