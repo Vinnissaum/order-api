@@ -31,15 +31,15 @@ You can download [here](https://insomnia.rest/download)
 
 - You will need to have JDK17 and maven installed at your computer.
 
-You can download JDK [here](https://www.oracle.com/java/technologies/downloads/)
+- You can download JDK [here](https://www.oracle.com/java/technologies/downloads/)
 
-You can download Maven [here](https://maven.apache.org/surefire/download.cgi)
+- You can download Maven [here](https://maven.apache.org/surefire/download.cgi)
 
-🐳 First of all run PostgreSQL as a service with Docker
+## 🐳 First of all run PostgreSQL as a service with Docker
 
 - You will need to have Docker installed at your computer and it need to be running.
 
-You can download [here](https://docs.docker.com/desktop/windows/install/)
+- You can download [here](https://docs.docker.com/desktop/windows/install/)
 
 ```bash
 # Create a postgresql container running the following command
@@ -55,7 +55,7 @@ $ docker run
 #Start the docker container
 $ docker start postgres
 ```
-- On You project folder, open the command line and type:
+- On your project folder, open the command line and type:
 
 ```bash
 $ mvn install -DskipTests
@@ -63,6 +63,7 @@ $ mvn install -DskipTests
 $ java -jar target/order-closing-api-0.0.1-SNAPSHOT.jar
 
 # Await the process on the command line to end.
-# Now the API it's available at `http://localhost:8080/api
+
+# Now the API it's available at `http://localhost:8080
 
 ```
