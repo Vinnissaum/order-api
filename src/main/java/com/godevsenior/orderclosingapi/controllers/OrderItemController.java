@@ -2,7 +2,6 @@ package com.godevsenior.orderclosingapi.controllers;
 
 import com.godevsenior.orderclosingapi.dto.OrderItemDTO;
 import com.godevsenior.orderclosingapi.services.OrderItemService;
-import com.godevsenior.orderclosingapi.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/orders")
 public class OrderItemController {
-
-    @Autowired
-    private OrderService orderService;
     @Autowired
     private OrderItemService service;
 

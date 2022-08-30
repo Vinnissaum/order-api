@@ -2,12 +2,10 @@ package com.godevsenior.orderclosingapi.dto;
 
 import com.godevsenior.orderclosingapi.entities.Order;
 import com.godevsenior.orderclosingapi.entities.OrderItem;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderCloseDTO extends OrderDTO implements Serializable {
+public class OrderCloseDTO extends OrderDTO {
     private List<OrderItemDTO> items = new ArrayList<>();
 
     public OrderCloseDTO() {}
