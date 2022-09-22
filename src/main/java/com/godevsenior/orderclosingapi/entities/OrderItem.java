@@ -1,57 +1,61 @@
 package com.godevsenior.orderclosingapi.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    private UUID id;
     @ManyToOne
     Order order;
     @OneToOne(cascade = CascadeType.ALL)
     Item item;
     @Column(name = "order_id", insertable = false, updatable = false)
-    private Long orderId;
+    private UUID orderId;
     @Column(name = "item_id", insertable = false, updatable = false)
-    private Long itemId;
+    private UUID itemId;
     private Double quantity;
     private Double totalValue;
     public OrderItem() {
     }
 
-    public OrderItem(Long id, Long orderId, Long itemId, Double quantity) {
+    public OrderItem(UUID id, UUID orderId, UUID itemId, Double quantity) {
         this.id = id;
         this.orderId = orderId;
         this.itemId = itemId;
         this.quantity = quantity;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getOrderId() {
+    public UUID getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(UUID orderId) {
         this.orderId = orderId;
     }
 
-    public Long getItemId() {
+    public UUID getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(UUID itemId) {
         this.itemId = itemId;
     }
 

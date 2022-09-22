@@ -3,10 +3,11 @@ import com.godevsenior.orderclosingapi.entities.Order;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.UUID;
 
 public class OrderDTO implements Serializable {
 
-    private Long id;
+    private UUID id;
     private Integer number;
     private Instant date;
     private Double percentageDiscount;
@@ -15,7 +16,7 @@ public class OrderDTO implements Serializable {
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, Integer number, Instant date, Double percentageDiscount, Double totalValue) {
+    public OrderDTO(UUID id, Integer number, Instant date, Double percentageDiscount, Double totalValue) {
         this.id = id;
         this.number = number;
         this.date = date;
@@ -31,11 +32,11 @@ public class OrderDTO implements Serializable {
         this.totalValue = entity.getTotalValue();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

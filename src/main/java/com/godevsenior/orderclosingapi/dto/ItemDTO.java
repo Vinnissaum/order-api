@@ -3,16 +3,17 @@ package com.godevsenior.orderclosingapi.dto;
 import com.godevsenior.orderclosingapi.entities.Item;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class ItemDTO implements Serializable {
-    private Long id;
+    private UUID id;
     private String description;
     private Double cost;
     private Character type;
 
     public ItemDTO() {}
 
-    public ItemDTO(Long id, String description, Double cost, Character type) {
+    public ItemDTO(UUID id, String description, Double cost, Character type) {
         this.id = id;
         this.description = description;
         this.cost = cost;
@@ -26,11 +27,11 @@ public class ItemDTO implements Serializable {
         this.type = entity.getType();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

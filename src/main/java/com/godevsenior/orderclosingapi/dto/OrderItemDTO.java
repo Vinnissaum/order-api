@@ -3,11 +3,12 @@ package com.godevsenior.orderclosingapi.dto;
 import com.godevsenior.orderclosingapi.entities.OrderItem;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class OrderItemDTO implements Serializable {
 
-    private Long id;
-    private Long itemId;
+    private UUID id;
+    private UUID itemId;
     private Double quantity;
     private Double totalValue;
 
@@ -21,19 +22,19 @@ public class OrderItemDTO implements Serializable {
         this.totalValue = entity.getTotalValue();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getItemId() {
+    public UUID getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(UUID itemId) {
         this.itemId = itemId;
     }
 

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ItemService {
@@ -29,7 +30,7 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public ItemDTO findById(Long id) {
+    public ItemDTO findById(UUID id) {
         Optional<Item> obj = repository.findById(id);
         Item entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 
@@ -48,7 +49,7 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemDTO update(Long id, ItemDTO dto) {
+    public ItemDTO update(UUID id, ItemDTO dto) {
         try {
             Item entity = repository.getReferenceById(id);
             entity.setDescription(dto.getDescription());
@@ -61,7 +62,7 @@ public class ItemService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {

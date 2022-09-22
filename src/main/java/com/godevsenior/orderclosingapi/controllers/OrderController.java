@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/orders")
@@ -25,7 +26,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<OrderDTO> findById(@PathVariable UUID id) {
         OrderDTO dto = service.findById(id);
 
         return ResponseEntity.ok().body(dto);
@@ -41,21 +42,21 @@ public class OrderController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<OrderDTO> update(@PathVariable Long id, @RequestBody OrderDTO dto) {
+    public ResponseEntity<OrderDTO> update(@PathVariable UUID id, @RequestBody OrderDTO dto) {
         dto = service.update(id, dto);
 
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<OrderDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<OrderDTO> delete(@PathVariable UUID id) {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping(value = "/{order}/close")
-    public ResponseEntity<OrderDTO> closeOrder(@PathVariable Long order, @RequestBody OrderDTO dto) {
+    public ResponseEntity<OrderDTO> closeOrder(@PathVariable UUID order, @RequestBody OrderDTO dto) {
         dto = service.closeOrder(order, dto);
 
         return ResponseEntity.ok().body(dto);

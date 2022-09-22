@@ -1,17 +1,21 @@
 package com.godevsenior.orderclosingapi.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    private UUID id;
     private Integer number;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant date;
@@ -21,18 +25,18 @@ public class Order implements Serializable {
     private List<OrderItem> orderItems;
     public Order() {}
 
-    public Order(Long id, Integer number, Instant date, Double percentageDiscount) {
+    public Order(UUID id, Integer number, Instant date, Double percentageDiscount) {
         this.id = id;
         this.number = number;
         this.date = date;
         this.percentageDiscount = percentageDiscount;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

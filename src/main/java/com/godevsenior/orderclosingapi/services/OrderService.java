@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -34,7 +35,7 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public OrderDTO findById(Long id) {
+    public OrderDTO findById(UUID id) {
         Optional<Order> obj = repository.findById(id);
         Order entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 
@@ -52,7 +53,7 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderDTO update(Long id, OrderDTO dto) {
+    public OrderDTO update(UUID id, OrderDTO dto) {
         try {
             Order entity = repository.getReferenceById(id);
             entity.setNumber(dto.getNumber());
@@ -65,7 +66,7 @@ public class OrderService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -76,7 +77,7 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderCloseDTO closeOrder(Long id, OrderDTO dto) {
+    public OrderCloseDTO closeOrder(UUID id, OrderDTO dto) {
         Optional<Order> obj = repository.findById(id);
         Order entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         List<OrderItem> orderItems = orderItemRepository.findAllByOrderId(id);

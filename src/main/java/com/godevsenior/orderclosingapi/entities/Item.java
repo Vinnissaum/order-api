@@ -1,15 +1,19 @@
 package com.godevsenior.orderclosingapi.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_item")
 public class Item implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    private UUID id;
     private String description;
     private Double cost;
     private Character type;
@@ -17,18 +21,18 @@ public class Item implements Serializable {
     OrderItem orderItem;
     public Item() {}
 
-    public Item(Long id, String description, Double cost, Character type) {
+    public Item(UUID id, String description, Double cost, Character type) {
         this.id = id;
         this.description = description;
         this.cost = cost;
         this.type = type;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/items")
@@ -24,7 +25,7 @@ public class ItemController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ItemDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<ItemDTO> findById(@PathVariable UUID id) {
         ItemDTO dto = service.findById(id);
 
         return ResponseEntity.ok().body(dto);
@@ -40,14 +41,14 @@ public class ItemController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ItemDTO> update(@PathVariable Long id, @RequestBody ItemDTO dto) {
+    public ResponseEntity<ItemDTO> update(@PathVariable UUID id, @RequestBody ItemDTO dto) {
         dto = service.update(id, dto);
 
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<ItemDTO> delete(@PathVariable Long id) {
+    public ResponseEntity<ItemDTO> delete(@PathVariable UUID id) {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
