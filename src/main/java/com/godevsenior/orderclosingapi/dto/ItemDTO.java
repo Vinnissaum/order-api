@@ -1,6 +1,7 @@
 package com.godevsenior.orderclosingapi.dto;
 
 import com.godevsenior.orderclosingapi.entities.Item;
+import com.godevsenior.orderclosingapi.entities.enums.ItemType;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -9,11 +10,11 @@ public class ItemDTO implements Serializable {
     private UUID id;
     private String description;
     private Double cost;
-    private Character type;
+    private ItemType type;
 
     public ItemDTO() {}
 
-    public ItemDTO(UUID id, String description, Double cost, Character type) {
+    public ItemDTO(UUID id, String description, Double cost, ItemType type) {
         this.id = id;
         this.description = description;
         this.cost = cost;
@@ -51,11 +52,11 @@ public class ItemDTO implements Serializable {
         this.cost = cost;
     }
 
-    public Character getType() {
+    public ItemType getType() {
         return type;
     }
 
-    public void setType(Character type) {
+    public void setType(ItemType type) {
         this.type = type;
     }
 }
