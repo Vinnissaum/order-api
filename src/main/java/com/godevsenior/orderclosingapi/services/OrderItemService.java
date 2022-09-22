@@ -52,8 +52,6 @@ public class OrderItemService {
         Item itemEntity = itemRepository.getReferenceById(dto.getItemId());
         entity.setOrder(orderEntity);
         entity.setItem(itemEntity);
-        entity.setOrderId(orderEntity.getId());
-        entity.setItemId(dto.getItemId());
         entity.setQuantity(dto.getQuantity());
         entity = repository.save(entity);
 
@@ -64,7 +62,6 @@ public class OrderItemService {
     public OrderItemDTO update(UUID id, OrderItemDTO dto) {
         try {
             OrderItem entity = repository.getReferenceById(id);
-            entity.setItemId(dto.getItemId());
             entity.setQuantity(dto.getQuantity());
             entity = repository.save(entity);
             return new OrderItemDTO(entity);

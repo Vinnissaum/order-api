@@ -17,7 +17,7 @@ public class OrderItemDTO implements Serializable {
 
     public OrderItemDTO(OrderItem entity) {
         this.id = entity.getId();
-        this.itemId = entity.getItemId();
+        this.itemId = entity.getItem().getId();
         this.quantity = entity.getQuantity();
         this.totalValue = entity.getTotalValue();
     }

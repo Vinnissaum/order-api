@@ -19,19 +19,16 @@ public class OrderItem implements Serializable {
     Order order;
     @OneToOne(cascade = CascadeType.ALL)
     Item item;
-    @Column(name = "order_id", insertable = false, updatable = false)
-    private UUID orderId;
-    @Column(name = "item_id", insertable = false, updatable = false)
-    private UUID itemId;
+
     private Double quantity;
     private Double totalValue;
     public OrderItem() {
     }
 
-    public OrderItem(UUID id, UUID orderId, UUID itemId, Double quantity) {
+    public OrderItem(UUID id, Order order, Item item, Double quantity) {
         this.id = id;
-        this.orderId = orderId;
-        this.itemId = itemId;
+        this.order = order;
+        this.item = item;
         this.quantity = quantity;
     }
 
@@ -41,30 +38,6 @@ public class OrderItem implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public UUID getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(UUID orderId) {
-        this.orderId = orderId;
-    }
-
-    public UUID getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(UUID itemId) {
-        this.itemId = itemId;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
     }
 
     public Order getOrder() {
@@ -83,8 +56,17 @@ public class OrderItem implements Serializable {
         this.item = item;
     }
 
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
     public Double getTotalValue() {
-        totalValue = item.getCost() * quantity;
+        this.totalValue = item.getCost() * this.quantity;
+
         return totalValue;
     }
 
